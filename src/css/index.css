@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.form-inline .input-group {
+  width: 100%;
+}
+.search-bar{
+  padding: 15px;
+}
