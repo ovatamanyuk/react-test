@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { play, addToQueue } from '../actions'
 
-let Play = ({ dispatch, playing, queue }) => {
-    let input
+let Play = ({ dispatch, queue }) => {
+    let input;
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -16,14 +16,13 @@ let Play = ({ dispatch, playing, queue }) => {
             video_id = video_id.substring(0, ampersandPosition);
         }
 
-        console.log(queue);
-        if(playing.length > 0 && queue.indexOf(playing) === -1) {
-            dispatch(addToQueue(playing));
+        if(queue.indexOf(video_id) === -1) {
+            dispatch(addToQueue(video_id));
         }
 
         dispatch(play(video_id));
         input.value = '';
-    }
+    };
 
     return (
         <div>
@@ -33,19 +32,18 @@ let Play = ({ dispatch, playing, queue }) => {
                         input = node
                     }} />
                     <span className="input-group-btn">
-                        <button className="btn btn-secondary" type="submit">Wathc</button>
+                        <button className="btn btn-secondary" type="submit">Watch</button>
                     </span>
                 </div>
             </form>
         </div>
     )
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        playing: state.play,
         queue: state.queue
     }
-}
+};
 
 export default connect(mapStateToProps)(Play)

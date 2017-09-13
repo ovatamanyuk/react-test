@@ -41,7 +41,7 @@ const Categories = () => {
             parent.children = children
         }; 
         return parent;
-    })
+    });
 
 
     console.log(parents);
@@ -53,6 +53,6 @@ const Categories = () => {
             })}
         </pre>
     );
-}
+};
 
 export default Categories;

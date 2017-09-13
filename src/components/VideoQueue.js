@@ -3,19 +3,18 @@ import { connect } from 'react-redux'
 import Video from './Video'
 import { play, addToQueue, deleteFromQueue } from '../actions'
 
-
-const VideoQueue = ({ dispatch, queue, playing }) => {
+const VideoQueue = ({ dispatch, queue }) => {
   const handlePlay = (index, video) => {
-    if (queue.length > 0) {
+    if (queue.length > 0 && queue.indexOf(video) !== -1) {
       dispatch(deleteFromQueue(index));
+      dispatch(addToQueue(video));
     }
     dispatch(play(video));
-    dispatch(addToQueue(playing));
-  }
+  };
 
   return (
     <ul className="list-group">
-      {queue.slice(0).reverse().map((video, key) =>
+      {queue.map((video, key) =>
         <Video
           key={key}
           index={key}
@@ -25,13 +24,12 @@ const VideoQueue = ({ dispatch, queue, playing }) => {
       )}
     </ul>
   )
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    playing: state.play,
     queue: state.queue
   }
-}
+};
 
 export default connect(mapStateToProps)(VideoQueue)

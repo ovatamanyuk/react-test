@@ -13,7 +13,7 @@ const Player = ({ play }) => {
 
   const _onReady = (event) => {
     event.target.pauseVideo();
-  }
+  };
 
   return (
     <YouTube
@@ -22,12 +22,12 @@ const Player = ({ play }) => {
       onReady={_onReady}
     />
   );
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
     play: state.play
   }
-}
+};
 
 export default connect(mapStateToProps)(Player);
